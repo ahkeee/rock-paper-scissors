@@ -1,31 +1,65 @@
 function getComputerChoice() {
-    let characters = ['Rock', 'Paper', 'Scissors'];
+    let characters = ['rock', 'paper', 'scissors'];
     return characters[Math.floor(Math.random()*characters.length)];
 }
 
+let userScore = parseInt(0);
+let computerScore = parseInt(0);
+let win = 'You win!';
+let loose = 'You loose';
+let tie = 'it\'s a tie';
 
-function playerRound(playerSelection, computerSelection = getComputerChoice()) {
-    // playerSelection = new RegExp('^' + playerSelection)
 
-    if(playerSelection === 'Rock' && computerSelection === 'Scissors') {
-        return `Congratulations! You\'ve won the game! because player choose ${playerSelection} and computer choose ${computerSelection}.`; 
-    } else if(playerSelection === 'Rock' && computerSelection === 'Paper') {
-        return `You lose, Paper beats Rock! because player choose ${playerSelection} and computer choose ${computerSelection}.`;
-    } else if(playerSelection === 'Rock' && computerSelection == 'Rock') {
-        return `It\'s a tie! Rock can\'t beat the Rock because they are the same! because player choose ${playerSelection} and computer choose ${computerSelection}.`;
-    } else if(playerSelection === 'Paper' && computerSelection === 'Rock') {
-        return `Congratulations! You\'ve won the game! because player choose ${playerSelection} and computer choose ${computerSelection}.`; 
-    } else if(playerSelection === 'Paper' && computerSelection === 'Scissors') {
-        return `You lose, Paper beats Rock! because player choose ${playerSelection} and computer choose ${computerSelection}.`;
-    } else if(playerSelection === 'Paper' && computerSelection == 'Paper') {
-        return `It\'s a tie! Rock can\'t beat the Rock because they are the same! because player choose ${playerSelection} and computer choose ${computerSelection}.`;
-    } else if(playerSelection === 'Scissors' && computerSelection === 'Paper') {
-        return `Congratulations! You\'ve won the game! because player choose ${playerSelection} and computer choose ${computerSelection}.`; 
-    } else if(playerSelection === 'Scissors' && computerSelection === 'Rock') {
-        return `You lose, Paper beats Rock! because player choose ${playerSelection} and computer choose ${computerSelection}.`;
-    } else if(playerSelection === 'Scissors' && computerSelection == 'Scissors') {
-        return `It\'s a tie! Rock can\'t beat the Rock because they are the same! because player choose ${playerSelection} and computer choose ${computerSelection}.`;
+function playerRound(playerSelection, computerSelection) {
+    if (playerSelection === "rock".toLowerCase()) {
+        if (computerSelection === "paper") {
+          computerScore++;
+          return loose;
+        } else if (computerSelection === "rock") {
+          return tie;
+        } else {
+          userScore++;
+          return win;
+        }
+      }
+    
+      if (playerSelection === "scissors".toLowerCase()) {
+        if (computerSelection === "paper") {
+          userScore++;
+          return win;
+        } else if (computerSelection === "rock") {
+          computerScore++;
+          return loose;
+        } else {
+          return tie;
+        }
+      }
+    
+      if (playerSelection === "paper".toLowerCase()) {
+        if (computerSelection === "paper") {
+          return tie;
+        } else if (computerSelection === "rock") {
+          userScore++;
+          return win;
+        } else {
+          computerScore++;
+          return loose;
+        }
     }
 }
 
-console.log(playerRound('Rock', getComputerChoice()));
+function game() {
+    for(let i = 0; i < 5; i++) {
+        const playerSelection = prompt('Pick a move')
+        const computerSelection = getComputerChoice();
+        console.log(playerRound(playerSelection, computerSelection));
+        console.log('You\'re score = ' + userScore);
+        console.log('Computer score = ' + computerScore);
+    }
+    alert(`Game Over=> User ${userScore} vs Computer ${computerScore}`);
+}
+
+game();
+
+
+
