@@ -1,0 +1,55 @@
+html {
+    box-sizing: border-box;
+}
+
+*, 
+*::before, 
+*::after {
+    box-sizing: inherit;
+}
+
+
+.selections {
+    display: flex;
+    justify-content: center;
+}
+
+.selection {
+    background: none;
+    border: none;
+    font-size: 6rem;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    transition: 100ms;
+}
+
+.selection:hover {
+    transform: scale(1.2);
+    color: yellowgreen;
+    
+} 
+
+.results {
+    margin: 1rem;
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    font-size: 3rem;
+}
+
+.result-score {
+    margin-left: .1rem;
+    font-size: 2rem;
+    color: #333;
+}
+
+.result-selection {
+    opacity: .5;
+}
+
+.result-selection.winner {
+    opacity: 1;
+    font-size: 4rem;
+}
